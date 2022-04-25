@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gym website template</title>
+<link rel="stylesheet" type="text/css" href="/static/CSS/index1.css">
+</head>
+<body>
+<div class="container-fluid">
+<div class="navbar">
+<h1>Portfolio</h1>
+<ul>
+<li><a href="#about" >About</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li>Store</li>
+<li  ><a href="http://localhost:8000/viewinstructors">team</a></li>
+<li class="space" style="padding: right 80px;"><a href="http://localhost:8000/viewreservedclasses">Reserved class</a></li>
+</ul>
+<span class="space1" style="width:80px; ">welcome {{client}}</span>
+<span class="space2" > {{status}}</span>
+
+<button style=" margin-left :300px;Background-color:#e11;padding: 15px;border-radius: 2em;"><a  href="http://localhost:8000/signout">SIGNOUT </a></button>
+
+</div>
+</div>
+{{error}}
+<div class="content">
+<div>
+<h3>Hello, My Name Is</h3>
+<h1>Fadi<span> Khatib</span></h1>
+<h4>I'm the owner of 140-fitness</h4><br>
+<P>we make  the world of fitness at your fingertips, our best equipeed gym , alng with the ebst trainer in the middle east will be here to help and guide you</P>
+
+</div>
+<div class="img">
+<img src="/static/images/a.png">
+</div>
+</div>
+<div id ="about" class="about" style="padding-bottom: 100px;padding-right: 100px; margin-left:-95px;">
+    <div class="cont">
+
+    <div style="font-size: larger;color: azure;">
+    <h1>About US</h1>
+    <h3>Gym Trainer</h3>
+    <P>our gym is fully equipped with all machine you can possibly think off  we have very wide variety of machine thta will gives the best 
+        performenece and result possible , on top o fthat we have the best instructor that are specialized to and hapy to 
+        help you aloong this journey o=and trnasorm your body to your dream body
+    </P>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+   
+    </div>
+    </div>
+    </div>
+
+
+<div class="service">
+<div class="text">
+<h1>Our Service</h1>
+<div class="box">
+<div>
+<ion-icon name="person"></ion-icon>
+<h2>GYM Training</h2>
+<p>Become part of our gym, full equipped with the top notch eqipment to make you life easier nd have a great life</p>
+</div>
+<div>
+    <a href="http://localhost:8000/viewschedule">
+    <ion-icon name="bicycle"></ion-icon>
+    <h2 style="color:black;">Classes Training</h2>
+    <p>Enjoy our wide variety of classes  that are scheduled each week with our top intructors ,try new things if you are willing to  </p>
+    </a></div>
+    <div>
+<ion-icon name="tennisball"></ion-icon>
+<h2>Dietition consulting  </h2>
+<p>meet out dietition , that will help you make a diet plan that can set you for a better life style and makes you fell in fit shape for the rest of your life </p>
+</div>
+</div>
+</div>
+</div>
+<div id="pricing" class="pricing">
+<div class="price">
+<h1>Pricing</h1>
+<p>We offer 3 type of mebership ,that we believe is best for all our clients , all membership include Classes entry  </p>
+<div class="price-box">
+<div>
+<h2>Basic</h2>
+<h3>$11</h3>
+<h5>1 Month Training</h5>
+<button class="btn"> <a href="{% url 'gymApp:membership' type='B'%}">Buy Now</a></button>
+</div>
+<div>
+<h2>Standard</h2>
+<h3>$21</h3>
+<h5>3 Month Training</h5>
+<button class="btn"><a href="{% url 'gymApp:membership' type='S'%}">Buy Now</a></button>
+</div>
+<div>
+<h2>Premium</h2>
+<h3>$31</h3>
+<h5>6 Month Training</h5>
+<button class="btn"><a href="{% url 'gymApp:membership' type='P'%}">Buy Now</a></button>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-fluid">
+<div class="footer">
+<p>Copyright 2021 - All Right Reserved - Made By Group 8 Team </p>
+<div class="icon">
+<ion-icon name="logo-facebook"></ion-icon>
+<ion-icon name="logo-whatsapp"></ion-icon>
+<ion-icon name="logo-instagram"></ion-icon>
+<ion-icon name="logo-google"></ion-icon>
+<ion-icon name="logo-youtube"></ion-icon>
+</div>
+</div>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<body>
+
+            <form action="http://localhost:8000/update_client/mail={{client.Client_email}}/" method="post">
+              {% csrf_token %}
+              Client_name<br>
+              <input type="text" name="name" autocomplete="off" value="{{ client.Client_name }}" required><br>
+
+              Client_email<br>
+              <input type="text" name="email" autocomplete="off" value="{{ client.Client_email }}" required><br>
+
+              Client_phone<br>
+              <input type="text" name="phone" value="{{ client.Client_phone }}"  required><br>
+
+              Client_address<br>
+              <input type="text" name="address" autocomplete="off" value="{{ client.Client_address }}" min="1" required>
+
+              <button type="submit">Submit</button>
+
+            </form>
+    
+      
+
+
+</body>
+</html>

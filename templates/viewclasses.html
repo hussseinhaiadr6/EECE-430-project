@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <h1>TIME TABLE</h1>
+    {% csrf_token %}
+    <ul>
+
+        {% for class in Classes %}
+            <li>{{ class.Class_name }} <br>intructor is :{{class.Class_instructor}} <br> <a href="{% url 'gymApp:db_delete_class' id=class.Class_id %}">Delete</a></li>
+        {% endfor %}
+        </ul>
+</body>
+  
+</html>

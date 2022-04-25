@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+<body>
+
+
+<div class="container box">
+  <a href="add_event.php"><button style="float:right;">Add Event</button></a>
+  Event Details<br>
+  <span style="font-size:16px;color:gray;">Click on the respective event to manage</span><br>
+  <span style="font-size:16px;">{{ status }}</span>
+
+  <table>
+    <tr>
+
+        <td>No</td>
+        <td>Client_Name</td>
+        <td>Client_email</td>
+        <td>Client_phone</td>
+        <td>Client_address</td>
+        <td>Client_age</td>
+        <td>Client_gender</td>
+        <td>Update</td>
+        <td>Delete</td>
+    </tr>
+
+    {% for e in Clients %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ e.Client_name}}</td>
+        <td>{{ e.Client_email }}</td>
+        <td>{{ e.Client_phone }}</td>
+        <td>{{ e.Client_address }}</td>
+        <td>{{ e.Client_age }}</td>
+        <td>{{ e.Client_gender }}</td>
+        <td><a href="{% url 'gymApp:update_client' mail=e.Client_email %}">Update</a></td>
+        <td><a href="{% url 'gymApp:delete_client' mail=e.Client_email %}">Delete</a></td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="7" align="center">No Events</td>
+      </tr>
+    {% endfor %}
+
+  </table>
+
+  
+</div>
+
+</body>
+</html>

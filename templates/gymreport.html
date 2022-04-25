@@ -1,0 +1,21 @@
+<html>
+    <body>
+        non active memebrship :
+        <table border="">
+        {% for X in l1 %}
+            <tr><td>{{ X.client.Client_email }} </td> <td>{{ X.membershipType }}</td><td>
+            <a style="color:red;" href="http://localhost:8000/deletemembership/id={{X.client.Client_email }}">delete</a>
+            </td></tr>
+        
+        {% endfor %}</table>
+        <br><br>
+         active memebrship :
+        <table border="">
+        {% for X in l2 %}
+            <tr><td>{{ X.client.Client_email }} </td> <td>{{ X.membershipType }}</td><td>
+            <a style="color:red;" href="http://localhost:8000/deletemembership/id={{X.client.Client_email }}">delete</a>
+            </td></tr>
+        
+        {% endfor %}</table>
+    </body>
+</html>
