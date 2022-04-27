@@ -9,7 +9,7 @@ from datetime import *
 from django.db.models import Q
 
 from gymApp.forms import CreateClientForm,CreateClassForm
-from .models import Client,Class,Membership,Reservation,Instructor
+from .models import Client,Class,Membership,Reservation,Instructor,applicant,jobs
 today=date.today()
 print(today)
 S=Client.objects.all()
@@ -19,7 +19,10 @@ for user in S:
     ClientNameList.append(user.Client_name)
 def index(request):
     if "uname" in request.session:
-        return userhome(request)
+        if "role" in request.session:
+            return managerhome(request)
+        else:
+            return userhome(request)
     else:
         return render(request, 'index.html')
 def signup(request):
@@ -74,6 +77,17 @@ def userhome(request):
         return render(request,'clienthome.html',{'client':name,"status":"you have "+str(days)+"days left"})
     except:
         return render(request,'clienthome.html',{'client':name,"status":"no membership yet"})  
+def managerhome(request):
+    print("calling client home")
+    if 'uname' in request.session:
+        name=request.session.get('uname')
+        mail=request.session.get('umail')
+        print("the name is "+name)
+        
+    user = Client.objects.get(Client_email=mail)
+    print(user.Client_address)
+    return render(request,"managerhome.html",{"client":name})
+    
 def createClass(request):
     if request.method == 'POST':
         form = CreateClassForm(request.POST)
@@ -104,9 +118,15 @@ def clientlogin(request):
             user = Client.objects.get(Client_email=email)
 
             if user.Client_pass == psw:
-                request.session['uname'] = user.Client_name
-                request.session['umail'] = user.Client_email
-                return userhome(request)
+                if user.Client_role=="C":
+                    request.session['uname'] = user.Client_name
+                    request.session['umail'] = user.Client_email
+                    return userhome(request)
+                elif user.Client_role=="M":
+                    request.session['uname'] = user.Client_name
+                    request.session['umail'] = user.Client_email
+                    request.session['role'] = user.Client_role
+                    return managerhome(request)
             else:
                 data = {'status':"Incorrect  Password!!!"}
                 return render(request,'Signin.html',{'error':"password is incorrect"})
@@ -289,6 +309,8 @@ def signout(request):
     print(request.session.get("uname"))
     del request.session['uname']
     del request.session['umail'] 
+    if "role" in request.session:
+        del request.session["role"]
     return render(request,'index.html')
 def membership(request,type):
     print("calling membership function")
@@ -555,3 +577,87 @@ def deletemembership(request,id):
     membership1=Membership.objects.get(client=user)
     membership1.delete()
     return gymreport(request)
+
+def sport(request):
+    return render(request,'index.html')
+
+def remove(request):
+    jobs.objects.filter(idofjob=request.GET["id"]).delete()
+    mydictionary = {  'alljob' : jobs.objects.all()}
+    return render(request,'manager.html',context=mydictionary)
+
+def showapplicants(request):
+    allapplicants = applicant.objects.filter(selectedjobid=request.GET["id"]).all()
+    mydictionary = {  'allapp' : allapplicants}
+    return render(request,'show_applicants.html',context=mydictionary)
+
+def jobapp(request):
+
+    return render(request,'jobapplication.html',{'id':request.GET["id"]})
+
+
+
+def manager(request):
+    mydictionary = {  'alljob' : jobs.objects.all()}
+    return render(request,'manager.html',context=mydictionary)
+
+import uuid 
+    
+
+def submit(request):
+    obj = applicant()
+    obj.idofapp=uuid.uuid1()
+    obj.name = request.GET['name']
+    obj.email = request.GET['email']
+    obj.country = request.GET['country']
+    obj.currentstate = request.GET['selector1']
+    obj.phonenumber = request.GET['phone']
+    obj.selectedjobid = request.GET["id"]
+    obj.save()
+    return render(request ,'jobapplication.html')
+
+def joblist(request):
+    mydictionary = {  'alljob' : jobs.objects.all()}
+    return render(request,'listofjobs.html',context=mydictionary)
+
+def add(request):
+
+    return  render(request,'addjob.html')
+    
+
+def addit(request):
+    obj = jobs()
+    obj.position=request.GET['position']
+    obj.salary = request.GET['salary']
+    obj.location = request.GET['location']
+    obj.jobschedule = request.GET['jobschedule']
+    obj.idofjob = uuid.uuid1()
+    obj.save()
+    return render(request,'addjob.html')
+
+from django.db.models import Q
+
+def search(request):
+    position=request.GET["position"]
+    location=request.GET["location"] 
+    jobschedule=request.GET["jobschedule"]
+    mydictionary={}
+    if(jobschedule or  location or jobschedule ):
+        alljobs = jobs.objects.filter(Q(position=position ) | Q(location=location )| Q(jobschedule=jobschedule)).all()
+        mydictionary = {  'alljob' : alljobs}
+    else:
+         mydictionary = {  'alljob' : jobs.objects.all()}
+    return render(request,'manager.html',context=mydictionary)
+
+def search1(request):
+    position=request.GET["position"]
+    location=request.GET["location"] 
+    jobschedule=request.GET["jobschedule"]
+    mydictionary={}
+    if(jobschedule or  location or jobschedule ):
+        alljobs = jobs.objects.filter(Q(position=position ) | Q(location=location )| Q(jobschedule=jobschedule)).all()
+        mydictionary = {  'alljob' : alljobs}
+    else:
+        mydictionary = {  'alljob' : jobs.objects.all()}
+    return render(request,'listofjobs.html',context=mydictionary)
+   

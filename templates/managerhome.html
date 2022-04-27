@@ -2,27 +2,29 @@
 <html>
 <head>
 <title>Gym website template</title>
-<link rel="stylesheet" type="text/css" href="../static/CSS/index.css">
+<link rel="stylesheet" type="text/css" href="/static/CSS/index1.css">
 </head>
 <body>
 <div class="container-fluid">
 <div class="navbar">
 <h1>Portfolio</h1>
-<ul>
+<ul style="margin-left:-50px; padding-right: 40px;">
+    <li><a href="http://localhost:8000/admin/gymreport/">gymreport</a></li>
+    <li><a href="#service">Services</a></li>
 
-<li><a href="#about" >About</a></li>
-<li><a href="#service">Services</a></li>
-<li><a href="seekjob">seekjob</a><br></li>
-
-<li><a href="#pricing">Pricing</a></li>
-<li  ><a href="http://localhost:8000/viewinstructors">team</a></li>
-<li style="margin-right:20px;"><em>Store</em></li>
+    <li><a href="manager">managerview</a></li><br>
+    <li  ><a href="http://localhost:8000/viewinstructors">team</a></li>
+    <li >Store</li>
+<li style="padding-right:50px;" ><a href="http://localhost:8000/viewreservedclasses">Schedule</a></li>
 </ul>
-<button  style="Background-color:#e11;margin-top: -3px;padding: 15px;border-radius: 2em;"><a class="clsass1" href="http://localhost:8000/login">SIGNIN</a></button>
-<button style="Background-color:#e11;padding: 15px;margin-top: -3px;border-radius: 2em;"><a class="classs1" href="http://localhost:8000/signup" >SIGNUP </a>
-</button>
+<span class="space1" style="width:80px; ">welcome {{client}}</span>
+<span class="space2" style="margin-left:-270px;" > {{status}}</span>
+
+<button style=" margin-left :120px;Background-color:#e11;padding: 15px;border-radius: 2em;"><a  href="http://localhost:8000/signout">SIGNOUT </a></button>
+
 </div>
 </div>
+{{error}}
 <div class="content">
 <div>
 <h3>Hello, My Name Is</h3>
@@ -32,10 +34,9 @@
 
 </div>
 <div class="img">
-<img src="../static/images/a.png">
+<img src="/static/images/a.png">
 </div>
 </div>
-
 <div id ="about" class="about" style="padding-bottom: 100px;padding-right: 100px; margin-left:-95px;">
     <div class="cont">
 
@@ -64,8 +65,7 @@
     </div>
 
 
-
-<div id="service"class="service">
+<div class="service">
 <div class="text">
 <h1>Our Service</h1>
 <div class="box">
@@ -74,14 +74,13 @@
 <h2>GYM Training</h2>
 <p>Become part of our gym, full equipped with the top notch eqipment to make you life easier nd have a great life</p>
 </div>
-
 <div>
-<a href="http://localhost:8000/viewschedule">
-<ion-icon name="bicycle"></ion-icon>
-<h2 style="color:black;">Classes Training</h2>
-<p>Enjoy our wide variety of classes  that are scheduled each week with our top intructors ,try new things if you are willing to  </p>
-</a></div>
-<div>
+    <a href="http://localhost:8000/viewschedule">
+    <ion-icon name="bicycle"></ion-icon>
+    <h2 style="color:black;">Classes Training</h2>
+    <p>Enjoy our wide variety of classes  that are scheduled each week with our top intructors ,try new things if you are willing to  </p>
+    </a></div>
+    <div>
 <ion-icon name="tennisball"></ion-icon>
 <h2>Dietition consulting  </h2>
 <p>meet out dietition , that will help you make a diet plan that can set you for a better life style and makes you fell in fit shape for the rest of your life </p>
@@ -89,7 +88,7 @@
 </div>
 </div>
 </div>
-<div id="pricing"class="pricing">
+<div id="pricing" class="pricing">
 <div class="price">
 <h1>Pricing</h1>
 <p>We offer 3 type of mebership ,that we believe is best for all our clients , all membership include Classes entry  </p>
@@ -98,7 +97,7 @@
 <h2>Basic</h2>
 <h3>$11</h3>
 <h5>1 Month Training</h5>
-<button class="btn"><a href="{% url 'gymApp:membership' type='B'%}">Buy Now</a></button>
+<button class="btn"> <a href="{% url 'gymApp:membership' type='B'%}">Buy Now</a></button>
 </div>
 <div>
 <h2>Standard</h2>
@@ -110,7 +109,7 @@
 <h2>Premium</h2>
 <h3>$31</h3>
 <h5>6 Month Training</h5>
-<button class="btn"><a href="{% url 'gymApp:membership' type='P' %}">Buy Now</a></button>
+<button class="btn"><a href="{% url 'gymApp:membership' type='P'%}">Buy Now</a></button>
 </div>
 </div>
 </div>

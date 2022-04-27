@@ -38,6 +38,18 @@ urlpatterns = [
     path('deletereservation/<str:id>/',views.deletereservation,name='deletereservation'),
     path('viewreservedclasses/',views.viewreservedclasses, name='viewreservedclasses'),
     url('admin/gymreport',views.gymreport, name='gymreport'),
-    path('deletemembership/<str:id>/',views.deletemembership,name='deletemembership'),]
+    path('deletemembership/<str:id>/',views.deletemembership,name='deletemembership'),
+    #path('',views.home,name='home'),
+    path('submit',views.submit , name='submit'),
+    path('jobapp',views.jobapp , name='jobapp'),
+    path('seekjob',views.joblist ,name='joblist'),
+    path('manager',views.manager ,name='manager'),
+    path('remove',views.remove ,name='remove'),
+    path('showapplicants',views.showapplicants ,name='showapplicants'),
+    path('add',views.add ,name='add'),
+    path('search',views.search ,name='search'),
+    path('search1',views.search1 ,name='search1'),
+    path('addit',views.addit ,name='addit'),
+    ]
 
 

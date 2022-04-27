@@ -7,6 +7,12 @@ class Client(models.Model):
     ('M', 'Male'),
     ('F', 'Female'),
 ]
+    Manager = 'M'
+    Client = 'C'
+    Role = [
+    ('M', 'Manager'),
+    ('C', 'Client'),
+]
    
     Client_name = models.CharField(max_length=30)
     Client_pass= models.CharField(max_length=30)
@@ -19,6 +25,11 @@ class Client(models.Model):
         default=Male,
     )
     Client_age=models.IntegerField()
+    Client_role=models.CharField(
+        max_length=1,
+        choices=Role,
+        default=Client,
+    )
     def __str__(self):
         ret = self.Client_name + ',' + self.Client_email
         return ret
@@ -84,3 +95,19 @@ class Reservation(models.Model):
  
 
 
+class applicant(models.Model):
+    idofapp = models.CharField(max_length=255,default=0)
+    name = models.CharField(max_length=255,default=0)
+    email = models.CharField(max_length=255,default=0)
+    country = models.CharField(max_length=255,default=0)
+    currentstate = models.CharField(max_length=255,default=0)
+    phonenumber =  models.IntegerField(default=0)
+    submition_date = models.DateTimeField(auto_now_add=True,null=True)
+    selectedjobid = models.CharField(max_length=255,default=0)
+
+class jobs(models.Model):
+    idofjob = models.CharField(max_length=255,default=0)
+    position = models.CharField(max_length=255,default=0)
+    location = models.CharField(max_length=255,default=0)
+    salary = models.CharField(max_length=255,default=0)
+    jobschedule = models.CharField(max_length=255,default=0)
